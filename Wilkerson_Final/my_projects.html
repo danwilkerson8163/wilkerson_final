@@ -1,0 +1,169 @@
+<h1 id="previous-work">Previous Work</h1>
+<h4 id="-these-are-some-of-the-work-ive-done-so-far-during-college-at-mizzou-"><strong>These are some of the work ive done so far during college at Mizzou.</strong></h4>
+<h3 id="adobe-illustrator">Adobe Illustrator</h3>
+<p float="left">
+  <img src="images/danielwilkerson3a@2x.png" width="200" />
+  <img src="images/danielwilkerson3b@2x.png" width="200" /> 
+</p>
+
+<p float="left">
+  <img src="images/danielwilkerson3c@2x.png" width="200" />
+  <img src="images/danielwilkerson3d@2x.png" width="200" /> 
+</p>
+
+<h3 id="adobe-photoshop">Adobe Photoshop</h3>
+<p float="left">
+  <img src="images/danielwilkerson4.jpg" width="800" />
+</p>
+
+
+
+
+<h3 id="html">HTML</h3>
+<pre><code class="lang-html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Fizz Buzz<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+
+       <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+           <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fizzbuzz</span>(<span class="hljs-params"></span>) </span>{
+           <span class="hljs-keyword">var</span> display = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'display'</span>);
+           <span class="hljs-keyword">var</span> displayHTML = <span class="hljs-string">""</span>;
+           <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++) {
+           displayHTML += <span class="hljs-string">"&lt;p&gt;"</span> + i + <span class="hljs-string">"&lt;/p&gt;"</span>;
+           }
+           display.innerHTML = displayHTML;
+           }
+       </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">onload</span>=<span class="hljs-string">"fizzbuzz()"</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"display"</span>&gt;</span>
+       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<h3 id="c-code">C# Code</h3>
+<pre><code class="lang-c#"><span class="hljs-keyword">using</span> System;
+<span class="hljs-keyword">using</span> System.IO;
+
+<span class="hljs-keyword">namespace</span> Wilkerson_DocumentMerger
+{
+    <span class="hljs-keyword">class</span> Program
+    {
+        <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> Main(<span class="hljs-keyword">string</span>[] args)
+        {   
+            <span class="hljs-keyword">bool</span> doAgain = true;
+            <span class="hljs-keyword">string</span> moreMerging;
+            <span class="hljs-built_in">while</span>(doAgain){
+                <span class="hljs-built_in">Console</span>.WriteLine(<span class="hljs-string">"Document Merger\n"</span>);
+                <span class="hljs-comment">//set up file 1 and content for file 1.</span>
+                <span class="hljs-keyword">string</span> fileName1 = getUserFileName();;
+                <span class="hljs-keyword">string</span> path1 = createFilePath(fileName1);
+                <span class="hljs-keyword">string</span> docContent1 = documentContent(path1);
+                <span class="hljs-built_in">if</span>(!<span class="hljs-built_in">File</span>.Exists(path1)){
+                    <span class="hljs-built_in">File</span>.WriteAllText(path1, docContent1);
+                }
+                <span class="hljs-comment">//set up file 2 and content for file 2.</span>
+                <span class="hljs-keyword">string</span> fileName2 = getUserFileName();
+                <span class="hljs-keyword">string</span> path2 = createFilePath(fileName2);
+                <span class="hljs-keyword">string</span> docContent2 = documentContent(path2);
+                <span class="hljs-built_in">if</span>(!<span class="hljs-built_in">File</span>.Exists(path2)){
+                    <span class="hljs-built_in">File</span>.WriteAllText(path2, docContent2);
+                }
+
+                <span class="hljs-comment">//create new merged file name.</span>
+                <span class="hljs-keyword">string</span> mergedFileName = mergeFileNames(fileName1, fileName2);
+                <span class="hljs-comment">//create new merged text string.</span>
+                <span class="hljs-keyword">string</span> mergedContent = mergeContent(docContent1, docContent2);
+                <span class="hljs-comment">//create path for new merged documents.</span>
+                <span class="hljs-keyword">string</span> mergedPath = createFilePath(mergedFileName);
+                <span class="hljs-built_in">if</span>(!<span class="hljs-built_in">File</span>.Exists(mergedPath)){
+                    <span class="hljs-built_in">File</span>.WriteAllText(mergedPath, mergedContent);
+                }
+                <span class="hljs-built_in">Console</span>.WriteLine($<span class="hljs-string">"{mergedFileName} was successfully saved. The document contains {mergedContent.Length} characters"</span>);
+                <span class="hljs-built_in">Console</span>.WriteLine(<span class="hljs-string">"Would you like to convert more grades (y/n)?"</span>);
+                moreMerging = <span class="hljs-built_in">Console</span>.ReadLine();                                                                                      
+                <span class="hljs-built_in">if</span> (moreMerging != <span class="hljs-string">"y"</span> &amp;&amp; moreMerging != <span class="hljs-string">"Y"</span>){
+                    doAgain = false;
+                }
+            }
+        }
+        <span class="hljs-comment">//function to get file name, add .txt if needed.</span>
+        <span class="hljs-keyword">static</span> <span class="hljs-keyword">string</span> getUserFileName(){
+            <span class="hljs-built_in">try</span>{
+                <span class="hljs-built_in">Console</span>.WriteLine(<span class="hljs-string">"Please enter name of the file: "</span>);
+                <span class="hljs-keyword">string</span> fileName = <span class="hljs-built_in">Console</span>.ReadLine();
+                <span class="hljs-comment">//add .txt to file name if needed.</span>
+                fileName = checkUserFileName(fileName);
+                <span class="hljs-keyword">string</span> path = Environment.CurrentDirectory + <span class="hljs-string">"/"</span> + fileName;
+                <span class="hljs-built_in">if</span>(!<span class="hljs-built_in">File</span>.Exists(path)){
+                    <span class="hljs-built_in">Console</span>.WriteLine(<span class="hljs-string">"File does not exist. Please re-enter file name to create a new document."</span>);
+                    fileName = <span class="hljs-built_in">Console</span>.ReadLine();
+                    fileName = checkUserFileName(fileName);
+                }
+                <span class="hljs-built_in">return</span> fileName;
+            }<span class="hljs-built_in">catch</span>(Exception e){
+                <span class="hljs-built_in">Console</span>.WriteLine(e);
+                <span class="hljs-built_in">return</span> null;
+            }
+        }
+        <span class="hljs-comment">//function to add .txt to file name</span>
+        <span class="hljs-keyword">static</span> <span class="hljs-keyword">string</span> checkUserFileName(<span class="hljs-keyword">string</span> fileName){
+            <span class="hljs-built_in">if</span>(fileName.EndsWith(<span class="hljs-string">".txt"</span>)){
+                <span class="hljs-built_in">return</span> fileName;
+            }<span class="hljs-built_in">else</span>{
+                fileName = fileName + <span class="hljs-string">".txt"</span>;
+                <span class="hljs-built_in">return</span> fileName;
+            }
+        }
+        <span class="hljs-comment">//function to delete the .txt in the file name</span>
+        <span class="hljs-keyword">static</span> <span class="hljs-keyword">string</span> deleteTxt(<span class="hljs-keyword">string</span> fileName){
+            <span class="hljs-built_in">if</span>(fileName.EndsWith(<span class="hljs-string">".txt"</span>)){
+                fileName = fileName.Substring(<span class="hljs-number">0</span>, fileName.Length<span class="hljs-number">-4</span>);
+                <span class="hljs-built_in">return</span> fileName;
+            }<span class="hljs-built_in">else</span>{
+                <span class="hljs-built_in">return</span> fileName;
+            }
+        }
+        <span class="hljs-comment">//function to create a path</span>
+        <span class="hljs-keyword">static</span> <span class="hljs-keyword">string</span> createFilePath(<span class="hljs-keyword">string</span> fileName){
+            <span class="hljs-keyword">string</span> path = Environment.CurrentDirectory + <span class="hljs-string">"/"</span> + fileName;
+            <span class="hljs-built_in">return</span> path;
+        }
+        <span class="hljs-comment">//function to create a string for the contents of a document.</span>
+        <span class="hljs-keyword">static</span> <span class="hljs-keyword">string</span> documentContent(<span class="hljs-keyword">string</span> path){
+            <span class="hljs-comment">//create a new string for content if file doesnt exist</span>
+            <span class="hljs-built_in">if</span>(!<span class="hljs-built_in">File</span>.Exists(path)){
+                <span class="hljs-built_in">Console</span>.WriteLine(<span class="hljs-string">"Type content to be put in document."</span>);
+                <span class="hljs-keyword">string</span> docContent = <span class="hljs-built_in">Console</span>.ReadLine();
+                <span class="hljs-built_in">return</span> docContent;
+            <span class="hljs-comment">//import existing content if file already exists</span>
+            }<span class="hljs-built_in">else</span>{
+                <span class="hljs-keyword">string</span> docContent = System.IO.<span class="hljs-built_in">File</span>.ReadAllText(path);
+                <span class="hljs-built_in">return</span> docContent;
+            }
+        }
+        <span class="hljs-comment">//function to merge file names.</span>
+        <span class="hljs-keyword">static</span> <span class="hljs-keyword">string</span> mergeFileNames(<span class="hljs-keyword">string</span> fileName1, <span class="hljs-keyword">string</span> fileName2){
+            <span class="hljs-comment">//delete .txt from file name 1.</span>
+            <span class="hljs-keyword">string</span> noTxt1 = deleteTxt(fileName1);
+            <span class="hljs-comment">//create merged file name.</span>
+            <span class="hljs-keyword">string</span> mergedFileName = noTxt1 + <span class="hljs-string">"_"</span> + fileName2;
+            <span class="hljs-built_in">return</span> mergedFileName;
+        }
+        <span class="hljs-comment">//function to merge content.</span>
+        <span class="hljs-keyword">static</span> <span class="hljs-keyword">string</span> mergeContent(<span class="hljs-keyword">string</span> docContent1, <span class="hljs-keyword">string</span> docContent2){
+            <span class="hljs-keyword">string</span> mergedContent = docContent1 + <span class="hljs-string">"\n\n\n"</span> + docContent2;
+            <span class="hljs-built_in">return</span> mergedContent;
+        }
+    }
+}
+</code></pre>
+<h6 id="-also-see-"><em>Also See:</em></h6>
+<ul>
+<li><a href="./skills.md">Skills</a></li>
+<li><a href="./resume.md">Resume</a></li>
+<li><a href="./hobby.md">Hobbies</a></li>
+</ul>
+<p><a href="./README.md">return to home page</a></p>
